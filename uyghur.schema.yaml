@@ -9,73 +9,59 @@ schema:
     - polyhedron<biopolyhedron@gmail.com>
     - Ivan Kozlov
   description: |
-    維語爾語（阿拉伯字母），採用拉丁維語輸入方案。
-    二合字母和擴展字母改用大寫字母輸入：
-    “چ”爲“c”，“ژ”爲“Z”，“ش”爲“S”，“غ”爲“g”
-    “ڭ”爲“N”，“ۆ”爲“O”，“ۈ”爲“U”，“ې”爲“E”
-engine:
-  processors:
-    - ascii_composer
-    - punctuator       # 處理符號按鍵
-    - express_editor
-  segmentors:
-    - punct_segmentor   # 劃界，與前後方的其他編碼區分開
-  translators:
-    - punct_translator  # 轉換
+    維語爾語阿拉伯字母，採用拉丁維語輸入方案。
+    帶擴展字符的拉丁維文改用大寫字母輸入：
+    “ۆ”爲“O”，“ۈ”爲“U”，“ې”爲“E”
     
 switches:
   - name: ascii_mode
     reset: 0
     states: [ ئۇيغۇر, لاتىن ]
+    
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - script_translator
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgfedcba'
+  delimiter: "'"
+  algebra:
+   - xform/^e'$/E/
+   - xform/^o'$/O/
+   - xform/^u'$/U/
+
+translator:
+  dictionary: uyghur
+  preedit_format:
+    - "xlit|EOU|ëöü|"
 
 punctuator:
-  import_preset: default
-  half_shape: # arabic
-    "a" : ا
-    "e" : ە
-    "b" : ب‬
-    "p" : پ‬
-    "t" : ت‬
-    "j" : ج
-    "c" : چ # ch
-    "x" : خ
-    "d" : د
-    "r" : ر
-    "z" : ز
-    "Z" : ژ # zh
-    "s" : س
-    "S" : ش # sh
-    "G" : غ # gh
-    "f" : ف
-    "q" : ق
-    "k" : ك
-    "g" : گ
-    "N" : ڭ # ng
-    "l" : ل
-    "m" : م
-    "n" : ن
-    "h" : ھ
-    "o" : و
-    "u" : ۇ
-    "O" : ۆ # ö
-    "U" : ۈ # ü
-    "w" : ۋ
-    "E" : ې # ë
-    "i" : ى
-    "y" : ي
-    "'" : ئ
-    ";" : ؛
-    "," : ،
-    ")" : (
-    "(" : )
+  half_shape: &symtable
+    ";" : "؛"
+    "," : "،"
+    ")" : "("
+    "(" : ")"
     "»" : "{"
     "«" : "}"
     ">" : "<"
     "<" : ">"
     "]" : "["
     "[" : "]"
-    "?" : ؟
-    "." : .
+    "?" : "؟"
     "}" : "«"
     "{" : "»"
-    " " : " "
