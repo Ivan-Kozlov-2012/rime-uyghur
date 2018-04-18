@@ -1,0 +1,43 @@
+# 使用拉丁維文輸入方案
+# 參見：https://en.wikipedia.org/wiki/Uyghur_Latin_alphabet
+
+---
+name: uyghur
+version: "20180417"
+sort: original
+use_preset_vocabulary: false
+...
+
+ا	a
+ە	e
+ب‬	b
+پ‬	p
+ت‬	t
+ج	j
+چ	ch
+خ	x
+د	d
+ر	r
+ز	z
+ژ	zh
+س	s
+ش	sh
+غ	gh
+ف	f
+ق	q
+ك	k
+گ	g
+ڭ	ng
+ل	l
+م	m
+ن	n
+ھ	h
+و	o
+ۇ	u
+ۆ	o'
+ۈ	u'
+ۋ	w
+ې	e'
+ى	i
+ي	y
+ئ	'
