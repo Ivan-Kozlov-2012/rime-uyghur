@@ -22,6 +22,11 @@ engine:
     - punct_segmentor   # 劃界，與前後方的其他編碼區分開
   translators:
     - punct_translator  # 轉換
+    
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ ئۇيغۇر, لاتىن ]
 
 punctuator:
   import_preset: default
@@ -73,4 +78,4 @@ punctuator:
     "." : .
     "}" : "«"
     "{" : "»"
-" " : " "
+    " " : " "
